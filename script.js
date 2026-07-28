@@ -10,12 +10,14 @@ document.addEventListener('DOMContentLoaded', () => {
   const params = new URLSearchParams(window.location.search);
   const ref = params.get('ref');
   const amount = params.get('amount');
+  const signature = params.get('signature');
 
   const widget = new WidgetCheckout({
     currency: 'COP',
     amountInCents: amount,
     reference: ref,
     publicKey: 'pub_test_087VTw4V3pdPD4vjUWEMODmqT8oq4SLQ',
+    'signature:integrity': signature,
     redirectUrl: window.location.origin + '/success.html',
   });
 
