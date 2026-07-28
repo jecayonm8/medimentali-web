@@ -20,6 +20,13 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   checkoutBtn.addEventListener('click', () => {
-    widget.open();
+    widget.open(function (result) {
+      var transaction = result.transaction;
+      if (transaction && transaction.status === 'APPROVED') {
+        window.location.href = 'success.html';
+      } else if (transaction) {
+        alert('El pago no fue aprobado. Estado: ' + transaction.status);
+      }
+    });
   });
 });
